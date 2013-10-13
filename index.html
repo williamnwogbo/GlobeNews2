@@ -1,0 +1,396 @@
+<!DOCTYPE html> 
+<html> 
+
+<head> 
+		<title>Globe News Reader</title> 
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+			<link rel="stylesheet" href="css/jquery.mobile.custom.theme.css" /> 
+			<link rel="stylesheet" href="css/jquery.mobile.custom.structure.min.css" /> 
+			
+				<link rel="stylesheet" href="css/jquery.mobile-1.2.0.css" /> 
+			<script type="text/javascript" src="https://www.google.com/jsapi?key=ABQIAAAAuvAXPRXL9qkzO0R8vzYpOhQ_BAnb8hQeSCQ2aBH79hHa1YbW_RQNN9ClKXG21xQObiXJ7diAAYaywg"></script>
+			
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script> -->
+		<script src="js/jquery.js"></script> 
+		<script>
+		$(document).on("click", ".show-page-loading-msg", function() {
+			var $this = $( this ),
+				theme = $this.jqmData("theme") || $.mobile.loader.prototype.options.theme,
+				msgText = $this.jqmData("msgtext") || $.mobile.loader.prototype.options.text,
+				textVisible = $this.jqmData("textvisible") || $.mobile.loader.prototype.options.textVisible,
+				textonly = !!$this.jqmData("textonly");
+				html = $this.jqmData("html") || "";
+			$.mobile.loading( 'show', {
+					text: msgText,
+					textVisible: textVisible,
+					theme: theme,
+					textonly: textonly,
+					html: html
+			});
+		})
+		.on("click", ".hide-page-loading-msg", function() {
+			$.mobile.loading( 'hide' );
+		});
+	</script>
+		<script type="text/javascript">
+		<!--
+			//INIT
+			$(document).bind("mobileinit", function(){
+			  	$.extend(  $.mobile , {
+					defaultTransition: "slide"
+			  	}); 
+			  
+			  	//init local storage feeds
+			  	if ( typeof localStorage["feeds"] == "undefined" && typeof localStorage['title'])
+			  	{
+			    	restoreDefault();
+			  	}
+			});
+			
+			$(document).ready(function(){
+				//load local storage feeds
+				var feeds = eval(localStorage["feeds"]);
+				var title=eval(localStorage["title"]);
+			  	if (feeds!=null)
+				for (var i=0; i<feeds.length;i++)
+			  	{
+			  		//create buttons for rss feed
+<<<<<<< HEAD
+			  		$("#yourfeeds").append('<input data-icon="arrow-r" data-transition="pop" class="show-page-loading-msg" data-iconpos="right" type="button" style="height:75px;" feed="'+localStorage.feeds[i]+'" onclick="loadFeed(\''+feeds[i]+'\',\''+title[i]+'\');" value="'+title[i]+'" />');
+=======
+			  		$("#yourfeeds").append('<input data-icon="arrow-r" data-transition="pop" class="show-page-loading-msg" data-iconpos="right" type="button" feed="'+localStorage.feeds[i]+'" onclick="loadFeed(\''+feeds[i]+'\',\''+title[i]+'\');" value="'+title[i]+'" />');
+>>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
+			  		$("#deletefeedlist").append('<input data-icon="arrow-r"  class="show-page-loading-msg" data-transition="pop" data-iconpos="right" type="button" feed="'+localStorage.feeds[i]+'" onclick="deleteFeed(\''+feeds[i]+'\');" value="'+title[i]+'" />');
+			  	}
+			});
+			
+			//FUNCS
+			function restoreDefault()
+			{
+				localStorage.clear();
+				var title=new Array();
+<<<<<<< HEAD
+				title.push("Africa News");
+				title.push("Automobile News");
+				title.push("Breaking News");
+				title.push("Channels Tv News");
+				title.push("Economic News");
+				title.push("Entrepreneurs News");
+				title.push("Enviromental News")
+				title.push("Entertainment News");
+				title.push("Fashion News");
+				title.push("Gossip News")
+				title.push("Health News")
+				title.push("Intelligent Technology")
+				title.push("International News");
+				title.push("Latest News");
+				title.push("Nigerian Student News");
+				title.push("Politics")
+				title.push("Pm News");
+=======
+				title.push("Africa's News");
+				title.push("Breaking News");
+				title.push("Channels Tv News");
+				title.push("Entertainment News");
+				title.push("Fashion News");
+				title.push("Gossip News")
+				title.push("International News");
+				title.push("Latest News");
+>>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
+				title.push("Sports News");
+				title.push("Technology News");
+				title.push("World News");
+				var feeds= new Array();
+				feeds.push("http://feeds.news24.com.ng/articles/nigeria/africa/rss");
+<<<<<<< HEAD
+				feeds.push("http://www.forbes.com/autos/index.xml");
+				feeds.push("http://www.breakingnews.com/feeds/rss/nigeria/");
+				feeds.push("http://www.channelstv.com/home/feed/");
+				feeds.push("http://www.businesseyenigeria.com/Economy-News.html?format=feed");
+				feeds.push("http://www.forbes.com/entrepreneurs/index.xml");
+				feeds.push("http://ehp.niehs.nih.gov/feed/");
+				feeds.push("http://feeds.news24.com.ng/articles/nigeria/entertainment/rss");
+				feeds.push("http://www.fashiontv.com/rss/fashion/");
+				feeds.push("http://www.entertainmentwise.com/rss/news.rss");
+				feeds.push("http://www.forbes.com/healthcare/index.xml");
+				feeds.push("http://www.forbes.com/intelligent-technology/index.xml");
+				feeds.push("http://topics.nytimes.com/top/news/international/countriesandterritories/nigeria/index.html?rss=1");
+				feeds.push("http://saharareporters.com/feeds/latest/feed");
+				feeds.push("http://skulmi.com/feed");
+				feeds.push("http://www.businesseyenigeria.com/Politics.html?format=feed");
+				feeds.push("http://feeds.feedburner.com/PmNewsNigeria");
+=======
+				feeds.push("http://www.breakingnews.com/feeds/rss/nigeria");
+				feeds.push("http://www.channelstv.com/home/feed/");
+				feeds.push("http://feeds.news24.com.ng/articles/nigeria/entertainment/rss");
+				feeds.push("http://www.fashiontv.com/rss/fashion");
+				feeds.push("http://www.entertainmentwise.com/rss/news.rss");
+				feeds.push("http://topics.nytimes.com/top/news/international/countriesandterritories/nigeria/index.html?rss=1");
+				feeds.push("http://saharareporters.com/feeds/latest/feed");
+>>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
+				feeds.push("http://www.goal.com/en-ng/feeds/news?fmt=rss&ICID=HP");
+				feeds.push("http://feeds.news24.com.ng/articles/nigeria/scitech/rss");
+				feeds.push("http://feeds.news24.com/articles/kenya/World/rss");
+				
+				localStorage.setItem("title",JSON.stringify(title))
+				localStorage.setItem("feeds", JSON.stringify(feeds));
+				window.location.reload();
+			}
+			
+			function loadFeed(url,title)
+			{
+				var rnd=Math.floor(Math.random()*10000000);
+				$(document.body).append('<div data-role="page" id="results'+rnd+'" data-theme="b">'+$("#results").html()+'</div>');
+				
+				var feed = new google.feeds.Feed(url);
+				
+				feed.setNumEntries(30);
+				feed.load(function(result) {
+					if (!result.error) 
+					{
+						$("#results"+rnd+" .resultscontent").append('<div data-role="controlgroup" class="articlelist"></div>');
+					  	for (var i = 0; i < result.feed.entries.length; i++) {
+							$("#results"+rnd+" .resultscontent .articlelist").append('<input data-icon="arrow-r" data-iconpos="right" onclick=\'showArticle("'+escape(result.feed.entries[i].title)+'","'+escape(result.feed.entries[i].link)+'","'+escape(result.feed.entries[i].content)+'")\' type="button" value="' + result.feed.entries[i].title.replace(/"/g, "'") + '" />');
+						}
+						$("#results"+rnd+" .feedtitle").html(title);
+						$.mobile.changePage($("#results"+rnd),"slide",false,true);
+					}
+					else
+						alert('feed error');
+				});
+			}
+			
+			function showArticle(title, url, desc)
+			{
+				if (typeof desc=="undefined")
+					desc="(No description provided)";
+				$("#article .articleinfo").html("<p>"+unescape(title)+"</p><p>"+unescape(desc)+"</p><p><a target=\"_blank\" href=\""+unescape(url)+"\">"+unescape(url)+"</a></p>");
+				$.mobile.changePage("#article","slide",false,true);
+			}
+			
+			function addTheFeed()
+			{
+				var topic=$("#title").val();
+				var url = $("#rssFeed").val();			
+				if (url==""){
+					$.mobile.changePage("#main","slide",true,true);
+				}
+				else 
+				{		
+					var title=eval(localStorage["title"]);		
+					var feeds = eval(localStorage["feeds"]);
+					feeds.push(url);
+					title.push(topic);
+					localStorage.setItem("feeds", JSON.stringify(feeds));
+					localStorage.setItem("title", JSON.stringify(title));
+					alert('News Feed  Has Been Added');
+					window.location("index.html");
+					
+				}
+			}
+			
+			function deleteFeed(url)
+			{		
+				if (url==""){
+					$.mobile.changePage("#main","slide",true,true);
+				}
+				else 
+				{		
+					var feeds = eval(localStorage["feeds"]);
+					var title= eval(localStorage["title"]);
+					for (var i=0; i<feeds.length; i++)
+					{
+						if (feeds[i]==url ) {
+							feeds.splice(i,1);
+							title.splice(i,1);
+							break;
+						}
+					}
+					localStorage.setItem("feeds", JSON.stringify(feeds));
+					localStorage.setItem("title", JSON.stringify(title));
+					
+					window.location.reload();
+				}
+			}
+			
+			function HtmlEncode(html) {
+			 return $('<div/>').text(html).html();
+			}
+			
+			function HtmlDecode(text) {
+			 return $('<div/>').html(text).text();
+			}
+			
+			//google feeds api
+			google.load("feeds", "1");
+			  	function OnLoad() {}
+			google.setOnLoadCallback(OnLoad);
+			
+		-->
+		</script> 
+		<script src="js/jquery.mobile-1.2.0.js"></script> 
+	</head> 
+	<body> 
+		<div data-role="page" id="main" data-theme="d"> 
+			<div role="banner" class="ui-header ui-bar-a" data-theme="f" data-role="header">
+		<h1 aria-level="1" role="heading" class="ui-title"><img src="img/logo.png" width="50px" height="50px" />Globe News</h1>
+		<a data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" href="#aboutus" data-icon="gear" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">About Us</span><span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span></span></a>
+				
+		<div role="navigation" class="ui-navbar ui-mini" data-role="navbar">
+			<ul class="ui-grid-f">
+				<li class="ui-block-a"><a class="ui-btn ui-btn-inline ui-btn-up-a ui-btn-active ui-state-persist"  data-icon="home" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="index.html"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span></span></a></li>
+				<li class="ui-block-b"><a class="ui-btn ui-btn-up-a ui-btn-inline" data-transition="pop" data-icon="add" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#addfeed"><span class="ui-btn-inner"><span class="ui-btn-text">Add News</span></span></a></li>
+				<li class="ui-block-c"><a class="ui-btn ui-btn-up-a ui-btn-inline" data-icon="delete" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#deletefeeds"><span class="ui-btn-inner"><span class="ui-btn-text">Delete News</span></span></a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div>
+			<div data-role="content"> 
+				<div data-role="controlgroup" id="yourfeeds">
+				</div> 
+			</br>
+				<div data-role="controlgroup"> 
+					<a href="#" data-role="button" data-iconpos="right" data-icon="alert" onclick="restoreDefault()">Restore Default News</a> 
+				</div>
+				 	
+			</div >
+			<div role="contentinfo" data-role="footer" class="ui-bar ui-footer ui-bar-a">
+				<h4>Globe News &copy; <script >var g = new Date(); document.write(g.getFullYear());</script> </h4>
+			</div>	
+		</div> 
+		
+		<!-- placeolder for feed template -->
+		<div id="results"> 
+			<div data-role="header"><a href="#result" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a><h1 class="feedtitle"></h1></div> 
+			
+			<div data-role="content" class="resultscontent">
+			</div> 
+			
+		</div>
+		<!-- placeolder for feed template -->
+		
+		<div data-role="page" id="deletefeeds" data-theme="c"> 
+			<div role="banner" class="ui-header ui-bar-a" data-role="header">
+		<h1 aria-level="1" role="heading" class="ui-title"><img src="img/logo.png" width="50px" height="50px" />Globe News > Delete News</h1>
+		<a data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" href="#aboutus" data-icon="gear" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">About Us</span><span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span></span></a>
+				
+		<div role="navigation" class="ui-navbar ui-mini" data-role="navbar">
+			<ul class="ui-grid-b">
+				<li class="ui-block-a"><a class="ui-btn ui-btn-inline ui-btn-up-a"  data-icon="home" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="index.html"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span></span></a></li>
+				<li class="ui-block-b"><a class="ui-btn ui-btn-up-a ui-btn-inline" data-transition="pop" data-icon="add" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#addfeed"><span class="ui-btn-inner"><span class="ui-btn-text">Add News</span></span></a></li>
+				<li class="ui-block-c"><a class="ui-btn ui-btn-up-a ui-btn-inline ui-btn-active ui-state-persist" data-icon="delete" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#deletefeeds"><span class="ui-btn-inner"><span class="ui-btn-text">Delete News</span></span></a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div>
+			<div data-role="content"> 
+				<h5>Select a feed below to delete it from your list.</h5>
+				<div data-role="controlgroup" id="deletefeedlist">
+				</div> 
+			</div>
+			<div role="contentinfo" data-role="footer" class="ui-bar ui-footer ui-bar-a">
+				<h4>Globe News &copy; <script >var g = new Date(); document.write(g.getFullYear());</script> </h4>
+			</div> 
+		</div> 
+		
+		<div data-role="page" id="article" data-theme="b"> 
+			
+			<div data-role="header">
+				<a href="#result" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
+				<h1>Details</h1></div> 
+			
+			<div data-role="content" class="articleinfo"></div> 
+		<div role="contentinfo" data-role="footer" class="ui-bar ui-footer ui-bar-a">
+				<h4>Globe News &copy; <script >var g = new Date(); document.write(g.getFullYear());</script> </h4>
+			</div>		
+		</div> 
+		
+		<div data-role="page" id="addfeed" data-theme="b"> 
+				<div role="banner" class="ui-header ui-bar-a" data-role="header">
+		<h1 aria-level="1" role="heading" class="ui-title"><img src="img/logo.png" width="50px" height="50px" />Globe News > Add News</h1>
+		<a data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" href="#aboutus" data-icon="gear" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">About Us</span><span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span></span></a>
+				
+		<div role="navigation" class="ui-navbar ui-mini" data-role="navbar">
+			<ul class="ui-grid-b">
+				<li class="ui-block-a"><a class="ui-btn ui-btn-inline ui-btn-up-a"  data-icon="home" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="index.html"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span></span></a></li>
+				<li class="ui-block-b"><a class="ui-btn ui-btn-up-a ui-btn-inline ui-btn-active ui-state-persist" data-transition="pop" data-icon="add" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#addfeed"><span class="ui-btn-inner"><span class="ui-btn-text">Add News</span></span></a></li>
+				<li class="ui-block-c"><a class="ui-btn ui-btn-up-a ui-btn-inline" data-icon="delete" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#deletefeeds"><span class="ui-btn-inner"><span class="ui-btn-text">Delete News</span></span></a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div>
+			
+			<div data-role="content"> 
+				<div data-role="fieldcontain" class="ui-hide-label">
+					<label for="username">Title:</label>
+					<input type="text" id="title" name="rssFeed" value="Title" />
+				</div>
+				<div data-role="fieldcontain" class="ui-hide-label">
+	<label for="username">News Feed Url or Rss Url:</label>
+	<input type="text" id="rssFeed" name="rssFeed" value="http://" />
+</div>
+				<input type="button" onclick="javascript:addTheFeed();" value="Add This Feed" class="show-page-loading-msg" data-theme="c" data-iconpos="right" data-icon="check" />
+			</div> 
+			
+	<div role="contentinfo" data-role="footer" class="ui-bar ui-footer ui-bar-a">
+				<h4>Globe News &copy; <script >var g = new Date(); document.write(g.getFullYear());</script> </h4>
+			</div>		
+		</div> 
+		<div data-role="page" id="aboutus" data-theme="b"> 
+				<div role="banner" class="ui-header ui-bar-a" data-role="header">
+		<h1 aria-level="1" role="heading" class="ui-title"><img src="img/logo.png" width="50px" height="50px" />About Us</h1>
+		<a data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" href="#aboutus" data-icon="gear" class="ui-btn-right ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-active ui-state-persist"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">About Us</span><span class="ui-icon ui-icon-gear ui-icon-shadow">&nbsp;</span></span></a>
+				
+		<div role="navigation" class="ui-navbar ui-mini" data-role="navbar">
+			<ul class="ui-grid-b">
+				<li class="ui-block-a"><a class="ui-btn ui-btn-inline ui-btn-up-a"  data-icon="home" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="index.html"><span class="ui-btn-inner"><span class="ui-btn-text">Home</span></span></a></li>
+				<li class="ui-block-b"><a class="ui-btn ui-btn-up-a ui-btn-inline " data-transition="pop" data-icon="add" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#addfeed"><span class="ui-btn-inner"><span class="ui-btn-text">Add News</span></span></a></li>
+				<li class="ui-block-c"><a class="ui-btn ui-btn-up-a ui-btn-inline" data-icon="delete" data-inline="true" data-theme="a" data-wrapperels="span" data-iconshadow="true" data-shadow="false" data-corners="false" href="#deletefeeds"><span class="ui-btn-inner"><span class="ui-btn-text">Delete News</span></span></a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div>
+			
+			<div data-role="content"> 
+				<div class="ui-body ui-body-b">
+			<h1>Globe News </h1>
+			<p>Globe News is an App dedicated to bring news to your door step<strong></strong>, <em>Keep</em> you Informed and make you know what goes on around you environment</p>
+					<div data-role="collapsible" data-theme="c" data-content-theme="b" data-collapsed="false" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+
+				<h3>Features</h3>
+				<p>News fetched Are from authentic sources Like</p>
+				<ul>
+				<li>
+					Channels tv
+				</li>
+				<li>
+					Goal.com
+				</li>
+				<li>
+					Breaking News
+				</li>
+				<li>
+					News 24 Hours
+				</li>
+				<li>
+					Sahara Reports and Many more
+				</li>
+				</ul>
+				<p>Content of News are always uptodate</p>
+				
+			</div>
+
+			<div data-role="collapsible" data-collapsed="true" data-theme="c" data-content-theme="b" data-collapsed-icon="arrow-d" data-expanded-icon="arrow-u">
+				<h3>Meet the App developer</h3>
+				<p>William Nwogbo  who is a Web and App developer and a student of Unn made this app to make one easily  informed about his eniviroment.They say Knowledge is Power.To Meet William,</br>Contact Him online with</br>
+					Email: williamnwogbo@gmail.com</br> Phone:07039448968 </p>
+			</div><!-- /collapsible -->
+			</div>
+					</div> 
+			
+	<div role="contentinfo" data-role="footer" class="ui-bar ui-footer ui-bar-a">
+				<h4>Globe News &copy; <script >var g = new Date(); document.write(g.getFullYear());</script> </h4>
+			</div>		
+		</div> 
+	</body> 
+
+
+</html>
