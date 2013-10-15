@@ -57,11 +57,7 @@
 				for (var i=0; i<feeds.length;i++)
 			  	{
 			  		//create buttons for rss feed
-<<<<<<< HEAD
-			  		$("#yourfeeds").append('<input data-icon="arrow-r" data-transition="pop" class="show-page-loading-msg" data-iconpos="right" type="button" style="height:75px;" feed="'+localStorage.feeds[i]+'" onclick="loadFeed(\''+feeds[i]+'\',\''+title[i]+'\');" value="'+title[i]+'" />');
-=======
 			  		$("#yourfeeds").append('<input data-icon="arrow-r" data-transition="pop" class="show-page-loading-msg" data-iconpos="right" type="button" feed="'+localStorage.feeds[i]+'" onclick="loadFeed(\''+feeds[i]+'\',\''+title[i]+'\');" value="'+title[i]+'" />');
->>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
 			  		$("#deletefeedlist").append('<input data-icon="arrow-r"  class="show-page-loading-msg" data-transition="pop" data-iconpos="right" type="button" feed="'+localStorage.feeds[i]+'" onclick="deleteFeed(\''+feeds[i]+'\');" value="'+title[i]+'" />');
 			  	}
 			});
@@ -71,14 +67,12 @@
 			{
 				localStorage.clear();
 				var title=new Array();
-<<<<<<< HEAD
 				title.push("Africa News");
 				title.push("Automobile News");
 				title.push("Breaking News");
 				title.push("Channels Tv News");
 				title.push("Economic News");
-				title.push("Entrepreneurs News");
-				title.push("Enviromental News")
+				
 				title.push("Entertainment News");
 				title.push("Fashion News");
 				title.push("Gossip News")
@@ -89,28 +83,15 @@
 				title.push("Nigerian Student News");
 				title.push("Politics")
 				title.push("Pm News");
-=======
-				title.push("Africa's News");
-				title.push("Breaking News");
-				title.push("Channels Tv News");
-				title.push("Entertainment News");
-				title.push("Fashion News");
-				title.push("Gossip News")
-				title.push("International News");
-				title.push("Latest News");
->>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
 				title.push("Sports News");
 				title.push("Technology News");
 				title.push("World News");
 				var feeds= new Array();
 				feeds.push("http://feeds.news24.com.ng/articles/nigeria/africa/rss");
-<<<<<<< HEAD
 				feeds.push("http://www.forbes.com/autos/index.xml");
 				feeds.push("http://www.breakingnews.com/feeds/rss/nigeria/");
 				feeds.push("http://www.channelstv.com/home/feed/");
 				feeds.push("http://www.businesseyenigeria.com/Economy-News.html?format=feed");
-				feeds.push("http://www.forbes.com/entrepreneurs/index.xml");
-				feeds.push("http://ehp.niehs.nih.gov/feed/");
 				feeds.push("http://feeds.news24.com.ng/articles/nigeria/entertainment/rss");
 				feeds.push("http://www.fashiontv.com/rss/fashion/");
 				feeds.push("http://www.entertainmentwise.com/rss/news.rss");
@@ -119,21 +100,11 @@
 				feeds.push("http://topics.nytimes.com/top/news/international/countriesandterritories/nigeria/index.html?rss=1");
 				feeds.push("http://saharareporters.com/feeds/latest/feed");
 				feeds.push("http://skulmi.com/feed");
-				feeds.push("http://www.businesseyenigeria.com/Politics.html?format=feed");
+				feeds.push("http://www.thenigerianvoice.com/rssfeed/news.xml?cat_id=1&gender=51");
 				feeds.push("http://feeds.feedburner.com/PmNewsNigeria");
-=======
-				feeds.push("http://www.breakingnews.com/feeds/rss/nigeria");
-				feeds.push("http://www.channelstv.com/home/feed/");
-				feeds.push("http://feeds.news24.com.ng/articles/nigeria/entertainment/rss");
-				feeds.push("http://www.fashiontv.com/rss/fashion");
-				feeds.push("http://www.entertainmentwise.com/rss/news.rss");
-				feeds.push("http://topics.nytimes.com/top/news/international/countriesandterritories/nigeria/index.html?rss=1");
-				feeds.push("http://saharareporters.com/feeds/latest/feed");
->>>>>>> dc04d346c4dd35d7ebd8ccdc1574fe564c5c88f5
 				feeds.push("http://www.goal.com/en-ng/feeds/news?fmt=rss&ICID=HP");
 				feeds.push("http://feeds.news24.com.ng/articles/nigeria/scitech/rss");
 				feeds.push("http://feeds.news24.com/articles/kenya/World/rss");
-				
 				localStorage.setItem("title",JSON.stringify(title))
 				localStorage.setItem("feeds", JSON.stringify(feeds));
 				window.location.reload();
@@ -246,6 +217,7 @@
 			</ul>
 		</div><!-- /navbar -->
 	</div>
+	<p>Please ensure you are online</p>
 			<div data-role="content"> 
 				<div data-role="controlgroup" id="yourfeeds">
 				</div> 
@@ -262,7 +234,7 @@
 		
 		<!-- placeolder for feed template -->
 		<div id="results"> 
-			<div data-role="header"><a href="#result" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a><h1 class="feedtitle"></h1></div> 
+			<div data-role="header"><h1 class="feedtitle"></h1></div> 
 			
 			<div data-role="content" class="resultscontent">
 			</div> 
@@ -296,7 +268,7 @@
 		<div data-role="page" id="article" data-theme="b"> 
 			
 			<div data-role="header">
-				<a href="#result" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
+				<a href="index.html" data-icon="arrow-l" data-rel="back" class="ui-btn-left">Back</a>
 				<h1>Details</h1></div> 
 			
 			<div data-role="content" class="articleinfo"></div> 
