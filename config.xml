@@ -17,7 +17,7 @@
         William Nwogbo
     </author>
 
-</widget>
+
 <gap:platform name="ios" />
 <gap:platform name="android" />
 <gap:platform name="webos" />
@@ -33,3 +33,4 @@
 <feature name="http://api.phonegap.com/1.0/battery"/>
 <feature name="http://api.phonegap.com/1.0/network"/>
 <access origin="*" subdomains="true" />
+</widget>
